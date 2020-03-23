@@ -42,7 +42,6 @@ class Labyrinthe:
                 if sprite == 'a':
                     win.blit(arrival, (x,y))
                 elif sprite == 'm':
-                    print(sprite)
                     win.blit(wall, (x,y))
                 elif sprite == '0':
                     win.blit(path, (x,y))
@@ -66,37 +65,51 @@ class Macgayver:
         self.x = 0
         self.y = 0
         self.structure = lab.structure
-        
+        min_case = 0
+        max_case = 14
        
 
-# Methode deplacer
+# Methode deplacement perso
     def move(self, direction):
-        
-        
+        if direction == 'up':
+            if self.case_y > 0:
+                if self.structure[self.case_y-1][self.case_x] != 'm':
+                    self.case_y -= 1
+                    self.y = self.case_y * taille_sprite
+                    print (str(self.case_x))
+                    print (str(self.case_y))
+                else:
+                    pass
+        if direction == 'down':
+            if self.case_y < (nombre_sprite_cote - 1):
+                if self.structure[self.case_x][self.case_y+1] != 'm':
+                    self.case_y += 1
+                    self.y = self.case_y * taille_sprite
+                    
+                else:
+                    pass
         if direction == 'right':
             if self.case_x < (nombre_sprite_cote - 1):
                 if self.structure[self.case_y][self.case_x+1] != 'm':
                     self.case_x += 1
                     self.x = self.case_x * taille_sprite
+                    self.y = self.case_y * taille_sprite
+                    print (str(self.case_x))
+                    print (str(self.case_y))
+                else:
+                    pass
             
         if direction == 'left':
             if self.case_x > 0:
                 if self.structure[self.case_y][self.case_x-1] != 'm':
                     self.case_x -= 1
                     self.x = self.case_x * taille_sprite
-            
-        if direction == 'up':
-            if self.case_y > 0:
-                if self.structure[self.case_y+1][self.case_x] != 'm':
-                    self.case_y += 1
-                    self.y = self.case_y * taille_sprite
-            
-        if direction == 'down':
-            if self.case_y < (nombre_sprite_cote - 1) :
-                if self.structure[self.case_y-1][self.case_x] != 'm':
-                    self.case_y -= 1
-                    self.y = self.case_y * taille_sprite
-            
+                    print (str(self.case_x))
+                    print (str(self.case_y))
+                else:
+                    pass
+            # en ajoutant cette modif il avance de + d'une case ( modifier pour qu'il avance d'une case)
+
 # Recuperer position
 
 # Attraper objet
@@ -104,20 +117,13 @@ class Macgayver:
 
 class Special_Objects:
     # Création objet
-    def __init__(self, name):
+    def __init__(self, lab):
         # Aiguille
-        self.name = 'aiguille'
+        '''self.name = 'aiguille'
         self.position_x = random.randint(0, 14)
-        self.position_y = random.randint(0, 14)
+        self.position_y = random.randint(0, 14)'''
 # Comment matérialiser que la case doit être vide
-        # Tube
-        self.name = 'tube'
-        self.position_x = random.randint(0, 14)
-        self.position_y = random.randint(0, 14)
-        #Ether
-        self.name = 'ether'
-        self.position_x = random.randint(0, 14)
-        self.position_y = random.randint(0, 14)
+
 
 # si c'est un objet et on met un compteur
 #inventaire avec variable i 
