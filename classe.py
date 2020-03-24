@@ -15,11 +15,11 @@ class Labyrinthe:
             level_lab = []
             for line in fichier:
                 level_line = []
-
+                
                 for sprite in line:
                     if sprite != '\n':
                         level_line.append(sprite)
-
+                        
                 level_lab.append(level_line)
         self.structure = level_lab
         
@@ -30,8 +30,11 @@ class Labyrinthe:
         departure = pygame.image.load(image_departure).convert()
         arrival = pygame.image.load(image_guard).convert()
         path = pygame.image.load(image_path).convert()
-        
-        
+        needle = pygame.image.load(image_needle).convert()
+        tube = pygame.image.load(image_tube).convert()
+        ether = pygame.image.load(image_ether).convert()
+
+        unavailable_pos = []
         num_line = 0
         for line in self.structure:
             num_case = 0
@@ -48,14 +51,20 @@ class Labyrinthe:
                 elif sprite == 'd':
                     win.blit(departure, (x,y))
                 num_case +=1
+                
             num_line +=1
-            # Objets spéciaux: Aiguile, Tube, Ether    
+        print(num_case)
+
+        # PAS DE ELSE PAS UN PROBLEME ?
+    # Objets spéciaux: Aiguile, Tube, Ether
+        unavailable_pos = []        
+        
     # Liste des positions
-    '''def create_items_list(self):
+    def create_items_list(self):
         """Method that adds items in a list"""
 
         for i in range(0, self.item_numbers):
-            self.items_list.append(Item(self))'''
+            self.items_list.append(Item(self))
     
 class Macgayver:
     def __init__(self, lab):
@@ -117,13 +126,18 @@ class Macgayver:
 
 class Special_Objects:
     # Création objet
-    def __init__(self, lab):
+    def __init__(self, laby):
+        self.case_x = 0
+        self.case_y = 0
+        self.x = 0
+        self.y = 0
+        self.structure = laby.structure
         # Aiguille
         '''self.name = 'aiguille'
         self.position_x = random.randint(0, 14)
         self.position_y = random.randint(0, 14)'''
 # Comment matérialiser que la case doit être vide
 
-
+#https://stackoverflow.com/questions/50859819/pygame-making-things-move-slower-than-1
 # si c'est un objet et on met un compteur
 #inventaire avec variable i 
