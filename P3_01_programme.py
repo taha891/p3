@@ -3,6 +3,12 @@ from pygame.locals import *
 from classe import *
 from constantes import *
 
+# Definition Couleurs
+
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
 # Affichage premier ecran
 
 
@@ -13,7 +19,6 @@ win = pygame.display.set_mode((640, 480), RESIZABLE)
 char = pygame.image.load(image_macgayver).convert()
 # Objets spéciaux
 
-
 pygame.display.set_caption('accueil')
 
 pygame.display.flip()
@@ -21,9 +26,12 @@ pygame.display.flip()
 labyrinthe = Labyrinthe('labyrinthe.txt')
 #Affichage personnage et objets
 perso = Macgayver(labyrinthe)
-needle = pygame.image.load(image_needle).convert()
-'''tube = Special_Objects(labyrinthe)
-ehter = Special_Objects(labyrinthe)'''
+
+
+# Initialisation score
+print(perso.compteur)
+
+      
 
 continuer = 1
 while continuer:
@@ -36,11 +44,11 @@ while continuer:
     labyrinthe.show(win)
     
     win.blit(char,(perso.x, perso.y))
-    win.blit(needle, (30,90))
+    #win.blit(needle, (30,90))
     pygame.display.flip()
-    # Lancement du jeu    
+    # Lancement du jeu
+
       
-    
     #Deplacement
         
     if event.type == QUIT:
@@ -50,20 +58,29 @@ while continuer:
             continuer = 0
         elif event.key == K_DOWN:
             perso.move('down')
+            
         elif event.key == K_UP:
             perso.move('up')
+            
         elif event.key == K_RIGHT:
             perso.move('right')
+            
         elif event.key == K_LEFT:
             perso.move('left')
-        
             
+        #print(perso.case_x, perso.case_y)
+        #catch_objects(perso)
+        print(perso.compteur)
 # Nouvelle position
     labyrinthe.show(win)
     win.blit(char,(perso.x, perso.y))
     pygame.display.flip()
-    
+
+
+    '''labyrinthe = Position() Quand je mets ça le perso ne bouge plus
+    perso = Position()'''
+
     # arrivée
-if labyrinthe.structure[perso.case_y][perso.case_x] == 'a':
-    continuer = 0
-    pygame.quit()
+    if labyrinthe.structure[perso.case_y][perso.case_x] == 'a' and perso.compteur == 3:
+        continuer = 0
+        pygame.quit()
