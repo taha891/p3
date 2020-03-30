@@ -19,13 +19,20 @@ ether = pygame.image.load(image_ether).convert()
 pygame.display.set_caption('accueil')
 
 pygame.display.flip()
-
+#Affichage labyrinthe
 labyrinthe = Labyrinthe('labyrinthe.txt')
-
+#Affichage personnage et objets
 perso = Macgayver(labyrinthe)
-needle = Special_Objects(labyrinthe)
-tube = Special_Objects(labyrinthe)
-ehter = Special_Objects(labyrinthe) 
+ether = Special_Objects()
+tube = Special_Objects()
+needle = Special_Objects()
+
+
+
+pygame.display.flip()
+
+      
+
 continuer = 1
 while continuer:
     for event in pygame.event.get():
@@ -37,13 +44,13 @@ while continuer:
     labyrinthe.show(win)
     
     win.blit(char,(perso.x, perso.y))
+    
     pygame.display.flip()
-    # Lancement du jeu    
     
 
-    
-    
-    
+    # Lancement du jeu
+
+      
     #Deplacement
         
     if event.type == QUIT:
@@ -53,20 +60,31 @@ while continuer:
             continuer = 0
         elif event.key == K_DOWN:
             perso.move('down')
+            
         elif event.key == K_UP:
             perso.move('up')
+            
         elif event.key == K_RIGHT:
             perso.move('right')
+            
         elif event.key == K_LEFT:
             perso.move('left')
-        
             
+        #print(perso.case_x, perso.case_y)
+        #catch_objects(perso)
+        print(perso.compteur)
 # Nouvelle position
     labyrinthe.show(win)
-    
     win.blit(char,(perso.x, perso.y))
+    ether.show_special(win)
     pygame.display.flip()
+
+# Objets spéciaux
+    
+    '''labyrinthe = Position() Quand je mets ça le perso ne bouge plus
+    perso = Position()'''
+
     # arrivée
-if labyrinthe.structure[perso.case_y][perso.case_x] == 'a':
-    continuer = 0
-    pygame.quit()
+    if labyrinthe.structure[perso.case_y][perso.case_x] == 'a' and perso.compteur == 3:
+        continuer = 0
+        pygame.quit()
