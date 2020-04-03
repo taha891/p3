@@ -1,19 +1,27 @@
 # Constantes toujours en Majuscules
 
-nombre_sprite_cote = 15
-taille_sprite = 30
-window = 600
+NOMBRE_SPRITE_COTE = 15
+TAILLE_SPRITE = 30
+WINDOW = 600
 
-accueil = "ressource/structures.png"
-window_name = 'Welcome'
-first_page = "ressource/loot.png"
+ACCUEIL = "ressource/structures.png"
+WINDOW_NAME = 'Welcome'
 #Elements de base du labyrinthe
-image_macgayver = 'ressource/macgyver.png'
-image_departure = 'ressource/loot.png'
-image_wall = "ressource/wall.png"
-image_guard = "ressource/guard.png"
-image_path = "ressource/path.png"
+IMAGE_MACGYVER = 'ressource/macgyver.png'
+IMAGE_DEPARTURE = 'ressource/loot.png'
+IMAGE_WALL = "ressource/wall.png"
+IMAGE_GUARD = "ressource/guard.png"
+IMAGE_PATH = "ressource/path.png"
 #Objets spéciaux
-image_needle = "ressource/aiguille.png"
-image_tube = "ressource/tube_plastique.png"
-image_ether = "ressource/ether.png"
+IMAGE_NEEDLE = "ressource/aiguille.png"
+IMAGE_TUBE = "ressource/tube_plastique.png"
+IMAGE_ETHER = "ressource/ether.png"
+
+# WIN & LOSE
+IMAGE_LOSE = "ressource/game_over.png"
+IMAGE_WIN = "ressource/winner.png"
+
+#SOUND
+SOUND_GOT_ITEM = "ressource/got_item.wav"
+SOUND_MOVE = "ressource/space.wav"
+SOUND_WIN = "ressource/achievement.wav"

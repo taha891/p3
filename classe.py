@@ -25,7 +25,7 @@ class Labyrinthe:
                     if sprite != '\n':
                         level_line.append(sprite)
                         x += 1
-                        #print(x,y)
+                        
                         
                 level_lab.append(level_line)
                 y += 1
@@ -38,21 +38,21 @@ class Labyrinthe:
         
     #afficher labyrinthe
     def show(self, win):
-        wall = pygame.image.load(image_wall).convert()
-        departure = pygame.image.load(image_departure).convert()
-        arrival = pygame.image.load(image_guard).convert()
-        path = pygame.image.load(image_path).convert()
-        needle = pygame.image.load(image_needle).convert()
-        tube = pygame.image.load(image_tube).convert()
-        ether = pygame.image.load(image_ether).convert()
+        wall = pygame.image.load(IMAGE_WALL).convert()
+        departure = pygame.image.load(IMAGE_DEPARTURE).convert()
+        arrival = pygame.image.load(IMAGE_GUARD).convert()
+        path = pygame.image.load(IMAGE_PATH).convert()
+        needle = pygame.image.load(IMAGE_NEEDLE).convert()
+        tube = pygame.image.load(IMAGE_TUBE).convert()
+        ether = pygame.image.load(IMAGE_ETHER).convert()
 
         
         num_line = 0
         for line in self.structure:
             num_case = 0
             for sprite in line:
-                x = num_case * taille_sprite
-                y = num_line * taille_sprite
+                x = num_case * TAILLE_SPRITE
+                y = num_line * TAILLE_SPRITE
                 self.compteur = 0
                 if sprite == 'a':
                     win.blit(arrival, (x,y))
@@ -60,31 +60,16 @@ class Labyrinthe:
                     win.blit(wall, (x,y))
                 elif sprite == '0':
                     win.blit(path, (x,y))
-                    available_pos.append((x,y))
-                    available_case.append((num_case,num_line))
+                    available_case.append((num_case,num_line)) 
                 elif sprite == 'd':
                     win.blit(departure, (x,y))
-                #Affichage objets spéciaux    
-                elif sprite == 't':
-                    win.blit(tube, (x,y))
-                elif sprite == 'n':
-                    win.blit(needle, (x,y))
-                elif sprite == 'e':
-                    win.blit(ether, (x,y))
+
                 num_case +=1
             num_line +=1
-   
-    # Liste des positions
-    
-    #def create_items_list(self):
-    #    """Method that adds items in a list"""
 
-     #   for i in range(0, self.item_numbers):
-    #      self.items_list.append(Item(self))
-    
 class Macgayver:
     def __init__(self, lab):
-        #Position perso en cases et en pixels
+    #Position perso en cases et en pixels
         self.case_x = 0
         self.case_y = 0
         self.x = 0
@@ -92,87 +77,90 @@ class Macgayver:
         self.structure = lab.structure
         self.compteur = 0
         
-# Methode deplacement perso
+    # Methode deplacement perso
     def move(self, direction):
+        sound1 = pygame.mixer.Sound(SOUND_MOVE)
+        sound2 = pygame.mixer.Sound(SOUND_GOT_ITEM)
         if direction == 'up':
             if self.case_y > 0:
                 if self.structure[self.case_y-1][self.case_x] != 'm':
-                    if self.structure[self.case_y-1][self.case_x] == 't' or self.structure[self.case_y-1][self.case_x] == 'n' or self.structure[self.case_y-1][self.case_x] == 'e':
-                        
+                    if self.structure[self.case_y-1][self.case_x] == 'i':
                         self.case_y -= 1
-                        self.y = self.case_y * taille_sprite
+                        #sound1.play()
+                        self.y = self.case_y * TAILLE_SPRITE
                         self.compteur += 1
+                        sound2.play()
                         self.structure[self.case_y][self.case_x] = '0'
                     else:
                         self.case_y -= 1
-                        self.y = self.case_y * taille_sprite
-                    
-                    
-                        #print (str(self.case_x))
-                        #print (str(self.case_y))
+                        #sound1.play()
+                        self.y = self.case_y * TAILLE_SPRITE
+
               
         if direction == 'down':
-            if self.case_y < (nombre_sprite_cote - 1):
+            if self.case_y < (NOMBRE_SPRITE_COTE - 1):
                 if self.structure[self.case_y+1][self.case_x] != 'm':
-                    if self.structure[self.case_y+1][self.case_x] == 't' or self.structure[self.case_y+1][self.case_x] == 'n' or self.structure[self.case_y+1][self.case_x] == 'e':
+                    if self.structure[self.case_y+1][self.case_x] == 'i':
                         self.case_y += 1
-                        self.y = self.case_y * taille_sprite
+                        self.y = self.case_y * TAILLE_SPRITE
                         self.compteur += 1
+                        sound2.play()
                         self.structure[self.case_y][self.case_x] = '0'
                     else:
                         self.case_y +=1
-                        self.y = self.case_y * taille_sprite
+                        self.y = self.case_y * TAILLE_SPRITE
                     
         if direction == 'right':
-            if self.case_x < (nombre_sprite_cote - 1):
+            if self.case_x < (NOMBRE_SPRITE_COTE - 1):
                 if self.structure[self.case_y][self.case_x+1] != 'm':
-                    if self.structure[self.case_y][self.case_x+1] == 't' or self.structure[self.case_y][self.case_x+1] == 'n' or self.structure[self.case_y][self.case_x+1] == 'e':
+                    if self.structure[self.case_y][self.case_x+1] == 'i':
                         self.case_x += 1
-                        self.x = self.case_x * taille_sprite
+                        self.x = self.case_x * TAILLE_SPRITE
                         self.structure[self.case_y][self.case_x] = '0'
                         self.compteur += 1
+                        sound2.play()
                     else:
                         self.case_x += 1
-                        self.x = self.case_x * taille_sprite
-                        self.y = self.case_y * taille_sprite
+                        self.x = self.case_x * TAILLE_SPRITE
+                        self.y = self.case_y * TAILLE_SPRITE
                    
             
         if direction == 'left':
             if self.case_x > 0:
                 if self.structure[self.case_y][self.case_x-1] != 'm':
-                    if self.structure[self.case_y][self.case_x-1] == 't' or self.structure[self.case_y][self.case_x-1] == 'n' or self.structure[self.case_y][self.case_x-1] == 'e':
+                    if self.structure[self.case_y][self.case_x-1] == 'i':
                         self.case_x -= 1
-                        self.x = self.case_x * taille_sprite
+                        self.x = self.case_x * TAILLE_SPRITE
                         self.structure[self.case_y][self.case_x] = '0'
                         self.compteur += 1
+                        sound2.play()
                     else:
                         self.case_x -= 1
-                        self.x = self.case_x * taille_sprite
-                        self.y = self.case_y * taille_sprite
+                        self.x = self.case_x * TAILLE_SPRITE
+                        self.y = self.case_y * TAILLE_SPRITE
                     
                     
 
 class Special_Objects:
     
-    def __init(self, lab):
-        self.case_x = 0
-        self.case_y = 0
+    def __init__(self, lab, image):
+        self.case_x = random.randint(0,14)
+        self.case_y = random.randint(0,14)
         self.x = 0
         self.y = 0
+        self.image = pygame.image.load(image).convert()
         self.structure = lab.structure
+        self.structure[self.case_y][self.case_x] = 'i'
         
     def show_special(self, win):
-        needle = pygame.image.load(image_needle).convert()
-        tube = pygame.image.load(image_tube).convert()
-        ether = pygame.image.load(image_ether).convert()
-        
-        pos_objects = random.sample(available_pos, k=3)
-        print(pos_objects)
-        win.blit(ether, (pos_objects[0]))
-        win.blit(tube, (pos_objects[1]))
-        win.blit(needle, (pos_objects[2]))
+        self.x = self.case_x * TAILLE_SPRITE
+        self.y = self.case_y * TAILLE_SPRITE     
 
-
-#https://stackoverflow.com/questions/50859819/pygame-making-things-move-slower-than-1
+        if self.structure[self.case_y][self.case_x] != 'm' and self.structure[self.case_y][self.case_x] != 'a' and self.structure[self.case_y][self.case_x] != 'd':
+            
+            if self.structure[self.case_y][self.case_x] == 'i':
+            
+                win.blit(self.image, (self.x, self.y))
+            
 
 
