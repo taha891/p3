@@ -1,0 +1,6 @@
+.vscode/
+__pycache__/
+env/
+P3_01_programme.py
+P3_02_demarche.docx
+P3_02_demarche.pdf

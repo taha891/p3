@@ -131,7 +131,7 @@ class SpecialObjects:
         self.x = self.case_x * TAILLE_SPRITE
         self.y = self.case_y * TAILLE_SPRITE
         # Check if it is not a wall or arrival or departure cell
-        if (self.structure[self.case_y][self.case_x] != 'm' and 
+        if (self.structure[self.case_y][self.case_x] != 'm' and
         self.structure[self.case_y][self.case_x] != 'a' and
         self.structure[self.case_y][self.case_x] != 'd'):
             if self.structure[self.case_y][self.case_x] == 'i':            

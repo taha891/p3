@@ -12,6 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 This program is realized in Python 3.8.1 in a virtual environmenent called "env".
 You have the differents librairies in the env/requirements.txt. Basically Pygame.
+To set the virtual environment make the command : pip install -r requirements.txt
 
 ## Deployment
 
