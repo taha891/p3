@@ -74,10 +74,6 @@ while game:
         win.blit(char,(perso.x, perso.y))
         pygame.display.flip()
 
-        ''' Put the object catched outside the maze '''
-        #ether_new = pygame.image.load(IMAGE_ETHER).convert()
-        #win.blit(ether_new, (150, 450))
-
         '''Death of the Hero Event'''
         if labyrinthe.structure[perso.case_y][perso.case_x] == 'a' and perso.compteur < 3:
             win.blit(lose, (150,200))
