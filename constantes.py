@@ -4,10 +4,10 @@ TAILLE_SPRITE = 30
 WINDOW = 600
 
 ACCUEIL = "ressource/structures.png"
-WINDOW_NAME = 'Welcome'
-#Basic elements of the maze structure (images)
-IMAGE_MACGYVER = 'ressource/macgyver.png'
-IMAGE_DEPARTURE = 'ressource/loot.png'
+WINDOW_NAME = "Welcome"
+# Basic elements of the maze structure (images)
+IMAGE_MACGYVER = "ressource/macgyver.png"
+IMAGE_DEPARTURE = "ressource/loot.png"
 IMAGE_WALL = "ressource/wall.png"
 IMAGE_GUARD = "ressource/guard.png"
 IMAGE_PATH = "ressource/path.png"
@@ -20,7 +20,7 @@ IMAGE_ETHER = "ressource/ether.png"
 IMAGE_LOSE = "ressource/game_over.png"
 IMAGE_WIN = "ressource/winner.png"
 
-#SOUNDS
+# SOUNDS
 SOUND_GOT_ITEM = "ressource/got_item.wav"
 SOUND_MOVE = "ressource/space.wav"
 SOUND_WIN = "ressource/achievement.wav"
