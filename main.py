@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import pygame
 from pygame.locals import K_UP, K_DOWN, K_LEFT, K_RIGHT
 from pygame.locals import KEYDOWN, K_ESCAPE, QUIT
@@ -5,17 +7,14 @@ from labyrinthe import Labyrinthe
 from hero import Macgayver
 from special_object import SpecialObjects
 
-from constantes import IMAGE_MACGYVER, IMAGE_WIN, IMAGE_LOSE, IMAGE_ETHER
-from constantes import IMAGE_TUBE, IMAGE_NEEDLE, SOUND_WIN
-
 """ This module contains all constants : images, audios, values)"""
 
-# -*- coding: utf-8 -*-
+from constantes import IMAGE_MACGYVER, IMAGE_WIN, IMAGE_LOSE, IMAGE_ETHER
+from constantes import IMAGE_TUBE, IMAGE_NEEDLE, SOUND_WIN
 
 
 def main():
     pygame.init()
-
 
     """Pygame initialization"""
 
@@ -45,7 +44,11 @@ def main():
         while continuer:
             pygame.time.Clock().tick(30)
             for event in pygame.event.get():
-                if event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
+                if (
+                    event.type == QUIT
+                    or event.type == KEYDOWN
+                    and event.key == K_ESCAPE
+                ):
                     continuer = 0
                     game = 0
                     pygame.quit()
@@ -94,6 +97,6 @@ def main():
                 pygame.display.flip()
                 continuer = 0
 
-if __name__ == "__main__":
-        main()
 
+if __name__ == "__main__":
+    main()
